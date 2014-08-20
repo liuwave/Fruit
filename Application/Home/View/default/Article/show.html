@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    {/*
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/all.css"/>
+    */}
+    <import type='css' file="Dist.css.bootstrap" />
+    <import type='css' file="Dist.css.bootstrap-theme" />
+    <import type='css' file="Dist.css.all" />
+    <style type="text/css">
+        body>.container-fluid .page-header {
+            padding-top:10px;
+            border-bottom: solid 1px #078D44;
+        }
+        body>.container-fluid>div{
+            background: #fffcc7;
+            padding: 0px 15px;
+            border-radius: 4px;
+        }
+        body>.container-fluid img{
+            max-width: 100%;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<include file="Public/header"/>
+<div class="container-fluid">
+    <div>
+        <div class="page-header">
+            <h1>{$article.title}
+			<p>
+			<small>{$article.subtitle}</small>
+			</p>
+			</h1>
+        </div>
+
+        <if condition="$article.img neq ''">
+            <img src="__PUBLIC__/{$article.img}"/>
+        </if>
+        <p class="lead">
+
+            {$article.content}
+
+        </p>
+
+    </div>
+
+
+
+
+</div>
+
+
+<include file="Public/copyright" />
+
+
+
+
+
+{/*
+<script type="javascript" src="../dist/js/jquery.js"/>
+<script type="javascript" src="../dist/js/jquery-cookie.js"/>
+<script type="javascript" src="../dist/js/bootstrap.js"/>
+<script type="javascript" src="../dist/js/main.js"/>
+//*/}
+
+<import  file="Dist.js.jquery" />
+<import  file="Dist.js.bootstrap" />
+<import  file="Dist.js.jquery-cookie" />
+<import  file="Dist.js.main" />
+
+
+
+
+<script>
+
+</script>
+
+</body>
+
+
+</html>

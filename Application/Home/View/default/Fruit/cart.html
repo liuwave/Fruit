@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    {/*
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/main.css"/>
+    */}
+    <import type='css' file="Dist.css.bootstrap" />
+    <import type='css' file="Dist.css.bootstrap-theme" />
+    <import type='css' file="Dist.css.main" />
+</head>
+<body>
+<div class="panel panel-default" id="page-cart">
+    <div class="panel-heading">
+        <div class="row">
+            <span class="col-xs-2">
+                 <button type="button" class="btn btn-link btn-block ">
+                     <span class="glyphicon glyphicon-arrow-left"></span>
+                 </button>
+            </span>
+
+            <span class="col-xs-10">购物车</span>
+
+        </div>
+        <!--<h3 class="panel-title">Panel title</h3>
+
+        <p>
+            <button type="button" class="btn btn-link btn-xs">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+            </button>
+            <span>Panel title</span>
+        </p>
+        -->
+
+
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="" id="shopcart">
+                <div class="container-fluid">
+				<div class="alert alert-warning" id="no-fruit" role="alert">
+					购物车中暂时没有商品，去<a href="{:U('Fruit/lists')}" class=btn btn-link>货架</a>逛逛呗
+				</div>
+                    <div class="panel panel-default" id="shop" >
+                        <div class="panel-heading">
+                            <label class="">
+                                <input type="checkbox" class="top_is_checked"> 龙泉总店
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="panel panel-default  hidden base-cartList" id="" data-fruit-check="">
+                        <div class="panel-body">
+                            <ul class="media-list">
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object"  style="width: 64px; height: 64px; "
+                                             src="__PUBLIC__/dist/img/1.jpg"/>
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#">
+                                            <span class="media-heading"></span>
+                                        </a>
+                                        <p class="">
+                                            <span class="label label-primary">
+                                                <span class="goodPrice"></span>元/
+                                                <span class="goodUnit"></span>
+                                            </span>
+                                        </p>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <p class="">
+                                <input class="is_checked" type="checkbox">
+                                <span>数量：</span>
+                                <button type="button" class="btn btn-link btn-sm goodMinus">
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                </button>
+                                <input class="goodCount" value="0"/>
+                                <button type="button" class="btn btn-link btn-sm goodPlus">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                </button>
+                                <span class="label label-danger">
+                                    总：
+                                    <span class="sub-total"></span>
+                                    元
+                                </span>
+                                <span class="btn btn-link btn-del" data-toggle="modal" data-target="">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </span>
+                                <div class="modal modal-del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                                <div class="modal-header">
+                                                    确认删除
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                                                </div>
+                                                <div class="modal-body">
+                                                    <button class="btn btn-default btn-qdel btn-danger">确认删除</button>
+                                                    <button class="btn btn-default btn-info" data-dismiss="modal">关闭</button>
+                                                </div>
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="list-group">
+                        <li class="list-group-item">
+                            <select class="form-control " id="pay-style">
+                                <option>货到付款</option>
+                            </select>
+                        </li>
+
+                        <li id="page-cart-go" class="list-group-item">
+                            <div class=" " >
+                                <span class="label label-lg label-info" id="cart-count">0</span>
+                                件商品，
+                                <span class="label label-lg label-danger">共 ￥<span id="cart-price">0</span>元</span>
+                            </div>
+                        </li>
+
+
+                    </div>
+
+
+
+
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><a href="#addressCollapse" role="tab" data-toggle="tab"> 免注册下单</a></li>
+                        <li><a href="#loginCollapse" role="tab" data-toggle="tab">会员下单</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="addressCollapse">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 col-xs-3 control-label">姓名</label>
+                                    <div class="col-sm-10 col-xs-9">
+                                        <input type="input" class="form-control" id="name" placeholder="姓名">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone" class="col-sm-2 col-xs-3 control-label">电话</label>
+                                    <div class="col-sm-10 col-xs-9">
+                                        <input type="input" class="form-control" id="telephone" placeholder="电话">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-sm-2 col-xs-3 control-label">地址</label>
+                                    <div class="col-sm-10 col-xs-9">
+                                        <input type="input" class="form-control" id="address" placeholder="地址">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <a href='{:U("Index/successOrder")}' type="button" id="orderAction" class="btn btn-primary">下单</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="loginCollapse">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-2 col-xs-3 control-label">用户名</label>
+                                    <div class="col-sm-10 col-xs-9">
+                                        <input type="input" class="form-control" id="username" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone" class="col-sm-2 col-xs-3 control-label">密码</label>
+                                    <div class="col-sm-10 col-xs-9">
+                                        <input type="password" class="form-control" id="password" placeholder="">
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="pull-right">
+                                        <a href="#">忘记密码</a>
+                                        <span>|</span>
+                                        <a href="#">注册新账户</a>
+
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-primary">登陆并下单</button>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+{/*
+<script type="javascript" src="../dist/js/jquery.js"/>
+<script type="javascript" src="../dist/js/jquery-cookie.js"/>
+<script type="javascript" src="../dist/js/bootstrap.js"/>
+<script type="javascript" src="../dist/js/main.js"/>
+*/}
+<include file="Public/copyright" />
+
+
+
+
+
+
+
+
+<include file="Public/footer" />
+<import  file="Dist.js.jquery" />
+<import  file="Dist.js.bootstrap" />
+<import  file="Dist.js.jquery-cookie" />
+<import  file="Dist.js.main" />
+
+<script>
+    $(function () {
+
+        fruitFreshCookieCart();
+        $(".footer #btn-menu-cart").addClass("menu-active");
+    });
+</script>
+
+</body>
+
+
+</html>

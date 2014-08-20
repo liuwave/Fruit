@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    {/*
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/all.css"/>
+    */}
+    <import type='css' file="Dist.css.bootstrap" />
+    <import type='css' file="Dist.css.bootstrap-theme" />
+    <import type='css' file="Dist.css.all" />
+    <style type="text/css">
+        body>.container-fluid .page-header {
+            padding-top:10px;
+            border-bottom: solid 1px #078D44;;
+
+        }
+        body>.container-fluid>div{
+            background: #fffcc7;
+            padding: 0px 10px 10px 10px;
+            border-radius: 4px;
+        }
+        body>.container-fluid img{
+            max-width: 100%;
+        }
+		input{
+			width:25px;
+			padding:0;
+			margin:0; 
+		}
+		.count_btn{
+		}
+		.media-body{
+
+		}
+		.media-list .media{
+			border-bottom:solid 1px #078D44;
+			padding-bottom:5px;
+			
+		}
+    </style>
+
+
+</head>
+<body>
+
+<include file="Public/header"/>
+<div class="container-fluid">
+    <div>
+        <div class="page-header">
+            <h2>今日特惠
+                <small></small>
+            </h2>
+        </div>
+
+        <if condition="!$bestornew">
+            <h4>正在努力准备中，稍后发布</h4>
+            <else/>
+
+            <ul class="media-list">
+                <volist name="bestornew" id="vo">
+                    <li class="media goodList" data-fruit-cate="cate{$vo.cid}" data-fruitid="{$vo.id}">
+                        <a class="pull-left" href="{:U('Fruit/detail?id='.$vo[id])}">
+                            <img class="media-object" src="__PUBLIC__/upload/{$vo.img}" style="width: 110px; height: 110px; ">
+                        </a>
+
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a class="pull-left" href="{:U('Fruit/detail?id='.$vo[id])}">
+                                        <h4 class="goodName">{$vo.name}</h4>
+                                    </a>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <p class="pull-left">
+									    <span class="label label-primary">
+                                                            <span>{$vo.unit}</span>
+                                                        </span>
+
+														<span class="label label-warning">
+															原价：
+															<del>
+                                                                <span>{$vo.original|default="-"}元</span>
+                                                            </del>
+
+                                                        </span>
+                                    </p>
+                                    <p>
+														<span class="label label-danger">
+														现价：
+                                                            <span class="goodPrice">{$vo.price}元</span>
+                                                        </span>
+														
+															<span class="label label-danger">
+															限购：
+																<span class="goodPrice">{$vo.buy_count|default="不限购"}</span>
+															</span>
+
+
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 count_btn">
+
+                                    <button type="button" class="btn btn-link btn-sm goodMinus hidden disabled">
+                                        <span class="glyphicon glyphicon-minus-sign"></span>
+                                    </button>
+                                    <input class="goodCount hidden" value="1"/>
+                                    <button type="button" class="btn btn-link btn-sm hidden goodPlus">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                    </button>
+
+                                    <a class="btn btn-success btn-sm best-buy disabled">到店购买</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                </volist>
+
+            </ul>
+
+
+        </if>
+
+
+    </div>
+
+
+</div>
+
+
+<include file="Public/copyright" />
+
+
+
+
+
+{/*
+<script type="javascript" src="../dist/js/jquery.js"/>
+<script type="javascript" src="../dist/js/jquery-cookie.js"/>
+<script type="javascript" src="../dist/js/bootstrap.js"/>
+<script type="javascript" src="../dist/js/main.js"/>
+//*/}
+
+<import  file="Dist.js.jquery" />
+<import  file="Dist.js.bootstrap" />
+<import  file="Dist.js.jquery-cookie" />
+<import  file="Dist.js.main" />
+
+
+
+
+<script>
+$(function(){
+
+	$(".best-buy").click(function(e){
+        return false;
+		var goodsId=$(this).parents(".goodList").data("fruitid");
+		var goodsCount=$(this).parents(".goodList").find(".goodCount").val();
+		//alert(goodsId);
+		//alert(goodsCount);
+		var d={"id":goodsId,"qty":goodsCount};
+		window.location.href="{:U('Home/Fruit/orderpre')}?ct="+JSON.stringify(d);
+
+
+	});
+		
+
+
+});
+
+
+
+
+</script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    {/*
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../dist/css/all.css"/>
+    */}
+    <import type='css' file="Dist.css.bootstrap" />
+    <import type='css' file="Dist.css.bootstrap-theme" />
+    <import type='css' file="Dist.css.all" />
+    <import type='css' file="Dist.css.bootstrap-notify" />
+
+    <style type="text/css">
+        body>.container-fluid .page-header {
+            padding-top:10px;
+            border-bottom: solid 1px #078D44;;
+
+
+        }
+        body>.container-fluid>form .form-group{
+            padding: 0 15px;
+
+        }
+        body>.container-fluid>form button{
+            display: inline-block;
+            margin: 0 0 0 40px;
+        }
+
+
+        body>.container-fluid>form .help-block{
+            margin-left: 20px;
+        }
+        body>.container-fluid>form{
+            margin-top: 10px;
+            background: #fffcc7;
+            padding: 0px 5px 15px 5px;
+            border-radius: 5px;
+            color: #078D44;
+        }
+
+    </style>
+
+
+
+</head>
+<body>
+
+<include file="Public/header"/>
+
+
+
+<div class="container-fluid">
+
+
+
+    <form class="form-horizontal" method="post"  role="form">
+
+        <div class="page-header">
+            <h1><small>登录</small> 果珍鲜 <small></small></h1>
+        </div>
+
+        <div class="form-group">
+            <label for="card_num" class="col-xs-12 ">会员卡号：</label>
+            <div class="col-xs-9">
+                <input type="text" check-type="required" minlength="5" class="form-control" name="card_num" id="card_num" placeholder="如：8XXXX">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="password" class="col-xs-12 ">密码（初始密码为手机号码）：</label>
+            <div class="col-xs-9">
+                <input type="password" class="form-control" check-type="required" minlength="6" name="password" id="password" placeholder="默认为手机号码">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class=" col-xs-12">
+                <button type="submit" class="btn btn-default">登录</button>
+
+            </div>
+
+        </div>
+	 <p class="text-warning">尊敬的客户：若忘记密码，请到柜台重置。</p>
+    </form>
+
+
+</div>
+<include file="Public/copyright" />
+
+
+
+<div class='notifications bottom-left'></div>
+
+{/*
+<script type="javascript" src="../dist/js/jquery.js"/>
+<script type="javascript" src="../dist/js/jquery-cookie.js"/>
+<script type="javascript" src="../dist/js/bootstrap.js"/>
+<script type="javascript" src="../dist/js/main.js"/>
+//*/}
+
+<import  file="Dist.js.jquery" />
+<import  file="Dist.js.bootstrap" />
+<import  file="Dist.js.jquery-cookie" />
+<import  file="Dist.js.bootstrap-notify" />
+
+
+<import  file="Dist.js.bootstrap3-validation" />
+<import  file="Dist.js.main" />
+
+
+<script>
+    $(function(){
+        //1. 简单写法：
+        $("form").validation();
+        $('body>.container-fluid>form button').click(function(event){
+            // 2.最后要调用 valid()方法。
+            event.preventDefault();
+            if ($("form").valid(this,"输入错误！")==false){
+                //$("#error-text").text("error!"); 1.0.4版本已将提示直接内置掉，简化前端。
+                return false;
+            }else{
+
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('/Home/User/loginCheck')}",
+                    data: $("form").serialize(),
+                    success: function(msg){
+                        if(msg["status"] ){
+                             $('.bottom-left').notify({
+								message: { text: msg["info"]+',转到 登陆前页面'}
+							  }).show(); // for the ones that aren't closable and don't fade out there is a .hide() function.
+
+                            var interval = setInterval(function(){
+
+                                if(msg['url']!==""){
+                                    location.href=msg['url'];
+                                }else{
+                                    location.href="{:U('Home/Index/index')}";
+                                }
+
+                                clearInterval(interval);
+                            }, 2000);
+
+
+                        }else{
+							$('.bottom-left').notify({
+								message: { text: msg["info"]}
+							  }).show(); // for the ones that aren't closable and don't fade out there is a .hide() function.
+
+                        }
+                    }
+                });
+
+            }
+        });
+		
+		
+		
+    });
+
+
+
+
+
+</script>
+
+</body>
+
+
+</html>

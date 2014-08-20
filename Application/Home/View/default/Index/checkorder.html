@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <import type='css' file="Dist.css.bootstrap" />
+    <import type='css' file="Dist.css.bootstrap-theme" />
+    <import type='css' file="Dist.css.main" />
+</head>
+<body>
+<div class="panel panel-default">
+<div class="panel-heading">
+    <!--<h3 class="panel-title">Panel title</h3> -->
+    <p>
+        <button type="button" class="btn btn-link btn-xs">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </button>
+        <span>确认订单</span>
+    </p>
+
+</div>
+<div class="panel-body">
+<div class="container-fluid">
+
+
+
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>金额</th>
+
+            </tr>
+            </thead>
+            <tbody id="orderList">
+            </tbody>
+            <tbody>
+            <tr>
+                <td>配送费</td>
+                <td>--</td>
+                <td>10</td>
+                <td>￥0</td>
+            </tr>
+            <tr>
+                <td>包装</td>
+                <td>-</td>
+                <td>1</td>
+                <td>￥0</td>
+            </tr>
+
+            </tbody>
+
+        </table>
+        <div class="alert alert-info" role="alert">
+            <span>总计：</span>
+            <span class="badge " id="cartCount">0</span>
+
+
+            <span class="label label-lg label-info">共 ￥<span id="cartPrice">0</span></span>
+        </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#addressCollapse" role="tab" data-toggle="tab"> 免注册下单</a></li>
+        <li><a href="#loginCollapse" role="tab" data-toggle="tab">会员下单</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="addressCollapse">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 col-xs-3 control-label">姓名</label>
+                    <div class="col-sm-10 col-xs-9">
+                        <input type="input" class="form-control" id="name" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="telephone" class="col-sm-2 col-xs-3 control-label">电话</label>
+                    <div class="col-sm-10 col-xs-9">
+                        <input type="input" class="form-control" id="telephone" placeholder="电话">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 col-xs-3 control-label">地址</label>
+                    <div class="col-sm-10 col-xs-9">
+                        <input type="input" class="form-control" id="address" placeholder="地址">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                            <a href='{:U("Index/successOrder")}' type="button" id="orderAction" class="btn btn-primary">下单</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane" id="loginCollapse">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 col-xs-3 control-label">用户名</label>
+                    <div class="col-sm-10 col-xs-9">
+                        <input type="input" class="form-control" id="username" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="telephone" class="col-sm-2 col-xs-3 control-label">密码</label>
+                    <div class="col-sm-10 col-xs-9">
+                        <input type="password" class="form-control" id="password" placeholder="">
+                    </div>
+                </div>
+                <div>
+                    <p class="pull-right">
+                        <a href="#">忘记密码</a>
+                        <span>|</span>
+                        <a href="#">注册新账户</a>
+                        <span>|</span>
+                        <a href="#">微信登陆</a>
+
+                    </p>
+                </div>
+                <div class="form-group">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">登陆</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+
+
+
+<import  file="Dist.js.jquery" />
+<import  file="Dist.js.bootstrap" />
+<import  file="Dist.js.jquery-cookie" />
+<import  file="Dist.js.main" />
+<script>
+    $(function () {
+        fruitFreshCookieForOrder();
+
+        $(".orderRm").click(function (e){
+            var trBlock=$(this).parents(".orderTr")
+            var cookieId=trBlock.attr("id");
+
+            console.log(trBlock,cookieId);
+
+            fruitDelCookie(cookieId);
+
+            window.location.reload();
+
+        });
+    });
+</script>
+
+</body>
+
+
+</html>
