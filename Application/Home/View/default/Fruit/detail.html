@@ -4,13 +4,7 @@
 <head>
     <META http-equiv=Content-Type content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    {/*
-    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.css"/>
-    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap-theme.css"/>
-    <link type="text/css" rel="stylesheet" href="../dist/css/all.css"/>
-    */}
-    <import type='css' file="Dist.css.bootstrap" />
-    <import type='css' file="Dist.css.bootstrap-theme" />
+<include file="Public/css" />
     <import type='css' file="Dist.css.all" />
     <style>
         #carousel-detail {
@@ -51,7 +45,7 @@
 
         }
         body>.container-fluid .modal-detail .modal-content{
-            margin-top: 50px;
+            margin-top: 70px;
             background: #fffcc7;
         }
 
@@ -104,7 +98,7 @@
             <li class="list-group-item">
                         <span class="label label-lg label-warning">
                         原价<del>
-                            <span>{$gDetail.original}元</span>/
+                            <span>{$gDetail.original|default="——"}元</span>/
                             <span class="goodUnit">{$gDetail.unit}</span></del>
 
                         </span>
@@ -168,12 +162,6 @@
                 </div>
                 <div class="modal-body">
                     {$gDetail.content}
-                    {$gDetail.content}
-                    {$gDetail.content}
-                    {$gDetail.content}
-                    {$gDetail.content}
-                    {$gDetail.content}
-                    {$gDetail.content}
                     <div class="padding-pack"></div>
                 </div>
 
@@ -185,37 +173,8 @@
 
 </div>
 
-{/*
-<script type="javascript" src="../dist/js/jquery.js"/>
-<script type="javascript" src="../dist/js/jquery-cookie.js"/>
-<script type="javascript" src="../dist/js/bootstrap.js"/>
-<script type="javascript" src="../dist/js/main.js"/>
-*/}
 <include file="Public/copyright" />
-
-{/*
-
-<div id="page-detail-go">
-    <div class="btn-group btn-group-justified">
-        <a class="btn btn-block btn-info" id="btn-add-to-cart">加入购物车</a>
-        <a class="btn btn-block btn-success" id="btn-buy-now">立即购买</a>
-
-    </div>
-
-
-</div>
-
-*/}
-
-<!--
-<include file="Public/footer" />
--->
-
-
-
-
-<import  file="Dist.js.jquery" />
-<import  file="Dist.js.bootstrap" />
+<include file="Public/js" />
 <import  file="Dist.js.jquery-cookie" />
 <!--
 <import  file="Dist.js.main" />

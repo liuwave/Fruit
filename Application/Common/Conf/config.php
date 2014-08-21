@@ -10,7 +10,7 @@ return array(
         'AUTH_USER' => 'fruit_user'//用户信息表
     ),
     'ADMINISTRATOR'=>array("1"),//免验证会员
-    'NOT_AUTH_MODULE_CONTROLLER'=>array('HOME/INDEX','HOME/FRUIT','HOME/ARTICLE'),
+    'NOT_AUTH_MODULE_CONTROLLER'=>array('HOME/INDEX','HOME/FRUIT','HOME/ARTICLE','HOME/PIC'),
     'NOT_AUTH_MODULE_WITH_USER'=>array('HOME'),
 
     'USER_AUTH_KEY'=>'fruit_user_id',
