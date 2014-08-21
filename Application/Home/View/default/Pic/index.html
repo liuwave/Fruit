@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<include file="Public/css" />
+    <import type='css' file="Dist.css.all" />
+    <style>
+        #carousel-detail {
+            margin:10px 0 5px 0;
+        }
+        #carousel-index .carousel-inner>.item>img{
+            margin: auto;
+
+        }
+        body>.container-fluid .page-header {
+            padding-top:10px;
+            border-bottom: solid 1px #078D44;;
+
+        }
+        body>.container-fluid>div{
+            background: #fffcc7;
+            padding: 0px 10px 10px 10px;
+            border-radius: 4px;
+        }
+
+        body>.container-fluid .modal-detail img{
+            max-width: 100%;
+
+        }
+        body>.container-fluid .modal-detail .modal-content{
+            margin-top: 70px;
+            background: #fffcc7;
+            padding:0;
+        }
+        body>.container-fluid .modal-detail .modal-body{
+            padding:0;
+        }
+        .row>div{
+            padding:5px;
+        }
+    </style>
+
+
+</head>
+<body>
+<include file="Public/header"/>
+
+
+
+
+
+<div class="container-fluid" id="page-detail" data-fruitid="{$gDetail.id}">
+    <div>
+        <div class="page-header">
+            <h2>精彩图集
+                <small></small>
+            </h2>
+        </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-3 col-xs-6">
+            <div class="thumbnail">
+                <a href="#" data-toggle="modal" class="thumb-click" data-target=".modal-detail">
+                <img src="__PUBLIC__/upload/image/Pic/thumb/1.jpg"
+                     alt="通用的占位符缩略图">
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-6">
+            <div class="thumbnail">
+                <a href="#" data-toggle="modal" class="thumb-click" data-target=".modal-detail">
+                <img src="__PUBLIC__/upload/image/Pic/thumb/2.jpg"
+                     alt="通用的占位符缩略图">
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-6">
+            <div class="thumbnail">
+                <a href="#" data-toggle="modal" class="thumb-click" data-target=".modal-detail">
+                <img src="__PUBLIC__/upload/image/Pic/thumb/3.jpg"
+                     alt="通用的占位符缩略图">
+                </a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="modal modal-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+
+                   <img src="#"/>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<include file="Public/copyright" />
+<include file="Public/js" />
+<import  file="Dist.js.jquery-cookie" />
+<!--
+<import  file="Dist.js.main" />
+-->
+<script>
+    /*
+    $(function () {
+
+
+		$("#page-detail-go #btn-buy-now").click(function (e) {
+            return false;
+			var goodsId = $("#page-detail").attr("data-id");
+			
+			var countSpan =$("#page-detail").find(".goodCount");
+
+			var counts = parseInt(countSpan.val());
+			var d={};
+            //d={goodsId:{"ct":counts}};
+			d[goodsId]={"ct":counts};
+
+			window.location.href="{:U('Fruit/orderPre')}?odata="+JSON.stringify(d);
+		});
+
+
+        $(".footer .btn").removeClass("menu-active");
+
+        $("#page-detail>.panel-heading>.row>span").eq(1).html("{$gDetail.name}");
+
+
+
+    });
+    */
+    $(function(){
+
+        $(".thumb-click").click(function(){
+            $(".modal-detail").find("img").attr("src",$(this).find("img").attr("src").replace("/thumb",""));
+
+
+        });
+
+
+    });
+
+
+</script>
+
+</body>
+
+
+</html>
